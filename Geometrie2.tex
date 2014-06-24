@@ -105,12 +105,46 @@
 		\begin{frame}{Problemstellung: Closed Pair}
 			\textbf{Geben:} n Punkte auf einer Ebene \\
 			\textbf{Gesucht:} die beiden am nähesten zusammenliegenden Punkte\\
-			
+		
+			\begin{block}{Naiver Ansatz}
+				Mit Vollständiger Suche. \\
+				\ \\
+				Alle Distanzen zwischen allen möglichen Punktpaaren ausrechnen und davon das Minimum wählen. 
+				\ \\
+				\textbf{Laufzeit:} $\mathcal{O}(n^2)$
+			\end{block}	
 		\end{frame}
 	
 	\subsection{Divide and Conquer}
 		\begin{frame}{Idee: Divide and Conquer}
-	
+			Statt Vollständiger Suche: Divide \& Conquer für eine Lösung in $\mathcal{O}(n \log n)$ Zeit.
+
+			\begin{enumerate}
+				\item \textbf{Divide}:\\ Sortieren der Punkte (Primär x-Koordinate, sekundär y-Koordinate). Aufteilen der Punktmenge in zwei Hälften
+				\item \textbf{Conquer}:\\ Größe der Punktmengen:
+					\begin{itemize}
+						\item $|$Punktmenge$|$ = 1, return $ \infty$
+						\item $|$PunktMenge$|$ = 2, return Euklidische Distanz der beiden Punkte
+					\end{itemize}
+				\item \textbf{Combine}: \\ Sei $d_{1}$ die kleinste Distanz innerhalb der Punktmenge $A_1$. \\
+							Sei $d_2$ die kleinste Distanz innerhalb der Punktmenge $A_2$. \\
+							Sei $d_{3}$ die kleinste Distanz von 2 Punkte aus jeweils $A_{1}$ und $A_{2}$.\\
+							$\rightarrow$ Die kleinste Distanz innerhalb $A_1$ $\cup$ $A_2$ ist $\min(s_1,s_2, s_3)$ \\
+			\end{enumerate}
+		\end{frame}
+
+		\begin{frame}{Combine}
+			Naiver Ansatz für Combine immer noch in Laufzeit $\mathcal{O}(n^2)$ \\
+			\centerline{\huge{Optimierbar!}} \\
+			Sei $d' = \min(d_1, d_2)$. \\  
+			Für jeden Punkt in der unteren Punktmenge kann der nähere Punkt nur in einem Rechteck mit Breite $d' \text{und Höhe} 2*d'$ liegen
+			\begin{block}{Beweisbar}
+				Es gibt maximal 6 solche Punkte im Rechteck. \\
+				Ohne Beweis
+			\end{block}
+			\ \\
+			$\Rightarrow$ Maximal $\mathcal{O}(6n)$ Operationen für Combine \\
+			$\Rightarrow$ \textbf{Gesamtlaufzeit:} \\ $T(n) = 2 * T(n/2) + \mathcal{O}(n)$, und es gilt: $T(n) \in \mathcal{O}(n \log n)$
 		\end{frame}
 	
 		\begin{frame}{Pseudocode}
