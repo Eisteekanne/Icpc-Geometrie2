@@ -92,9 +92,31 @@
 	\subsection{Graham Scan}
 		\begin{frame}{Idee: Graham Scan}
 			\begin{itemize}
-				\item Bestimme den untersten Punkt 
-				\item Sortiere die Punkte nach Winkel relativ zum untersten Punkt
+				\item Bestimme den untersten Punkt $ P_0 $
+				\item Sortiere die Punkte nach Winkel relativ zu $ P_0 $
+				\item Füge den Punkt mit dem größten Winkel der konvexen Hülle hinzu
+				\item Nimm nun jeweils den Punkt mit dem kleinsten Winkel:
+				\begin{itemize}
+					\item liegt er links des Vektors $P_{k-1}$ $P_k$ füge ihn der konvexen Hülle hinzu
+					\item liegt er rechts so entferne solange Punkte aus der Konvexen Hülle bis er links des letzten Vektors liegt 
+				\end{itemize}
+				\item Wurden alle Punkte betrachtet so hat man die konvexe Hülle gefunden.
 			\end{itemize}
+		\end{frame}
+		
+		\begin{frame}{Beispiel}
+		\begin{minipage}[t]{\textwidth}
+			\includegraphics<1>[width=0.5\textwidth]{logos/winkel.png}
+			\includegraphics<2>[width=0.5\textwidth]{logos/pf1.png}
+			\includegraphics<3>[width=0.5\textwidth]{logos/pf2.png}
+			\includegraphics<4>[width=0.5\textwidth]{logos/pf3.png}
+			\includegraphics<5>[width=0.5\textwidth]{logos/pf4.png}
+			\includegraphics<6>[width=0.5\textwidth]{logos/pf45.png}			
+			\includegraphics<7>[width=0.5\textwidth]{logos/pf5.png}
+			\includegraphics<8>[width=0.5\textwidth]{logos/pf67.png}
+			\includegraphics<9>[width=0.5\textwidth]{logos/pf677.png}
+			\includegraphics<10>[width=0.5\textwidth]{logos/pf6.png}
+		\end{minipage}
 		\end{frame}
 	
 
