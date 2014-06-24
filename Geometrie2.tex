@@ -67,22 +67,37 @@
 \section{Konvexe Hülle}
 	\subsection{Problemstellung}
 		\begin{frame}{Problemstellung: Konvexe Hülle}
-			\begin{box}
+			\begin{block}{Problem}
 			 Gegeben sei eine Menge M von Punkten in der Ebene. Die konvexe Hülle von M ist die kleinste konvexe Menge, in der M enthalten ist.
-			\end{box}
+			\end{block}
 			\begin{figure}
 				\includegraphics[width=8cm]{logos/konhu.png}\\
 			\end{figure}
 		\end{frame}
+		
+	\subsection{Idee}
+		\begin{frame}{Hüllen}
+			\begin{minipage}[t]{0.45\textwidth}
+				\includegraphics[width=0.8\textwidth]{logos/nKonvex.png}
+			\end{minipage}
+			\begin{minipage}[t]{0.45\textwidth}
+				\includegraphics[width=0.8\textwidth]{logos/konvex.png}
+			\end{minipage}
+			\begin{block}{Fazit}
+				Konvexe Hüllen haben nur links Abbiegungen.
+			\end{block}
+		
+		\end{frame}
 	
 	\subsection{Graham Scan}
 		\begin{frame}{Idee: Graham Scan}
-	
+			\begin{itemize}
+				\item Bestimme den untersten Punkt 
+				\item Sortiere die Punkte nach Winkel relativ zum untersten Punkt
+			\end{itemize}
 		\end{frame}
 	
-		\begin{frame}{Pseudocode}
-	
-		\end{frame}
+
 
 \section{Sweepline}
 
@@ -145,10 +160,6 @@
 			\ \\
 			$\Rightarrow$ Maximal $\mathcal{O}(6n)$ Operationen für Combine \\
 			$\Rightarrow$ \textbf{Gesamtlaufzeit:} \\ $T(n) = 2 * T(n/2) + \mathcal{O}(n)$, und es gilt: $T(n) \in \mathcal{O}(n \log n)$
-		\end{frame}
-	
-		\begin{frame}{Pseudocode}
-	
 		\end{frame}
 	
 
