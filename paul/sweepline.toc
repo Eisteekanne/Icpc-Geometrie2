@@ -1,0 +1,5 @@
+\beamer@endinputifotherversion {3.24pt}
+\select@language {ngerman}
+\select@language {ngerman}
+\beamer@sectionintoc {1}{Sweepline}{2}{0}{1}
+\beamer@subsectionintoc {1}{1}{Problem}{3}{0}{1}

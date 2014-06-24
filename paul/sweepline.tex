@@ -1,0 +1,113 @@
+\documentclass{beamer}
+
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+
+\usepackage{listings}
+
+\title{Sweepline Algorithmen - Linienschnitte}
+\author{Paul Jungeblut}
+\date{2. Juli 2014}
+
+\begin{document}
+
+\selectlanguage{ngerman}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\section{Sweepline}
+\begin{frame}{Sweepline - Was ist das?}
+	\begin{block}{Sweepline} 
+		\begin{itemize}
+			\item Häufige Methode zum Lösen geometrischer Probleme
+			\item Gesamte Ebene wird mit einer Linie gescannt (Scanline)
+			\item Nur an bestimmten, wichtigen Punkten (Events) muss etwas getan werden
+		\end{itemize}
+	\end{block}
+	\begin{exampleblock}{Beispiele}
+		\begin{itemize}
+			\item Graham-Scan, Sweepline scannt um einen Punkt rotierend
+			\item Closest-Pair, klassisch
+		\end{itemize}
+	\end{exampleblock}
+\end{frame}
+
+\subsection{Problem}
+\begin{frame}{Problemstellung}
+	\begin{block}{Aufgabe}
+		\begin{itemize}
+			\item $n$ Strecken in der Ebene, jeweils gegeben durch die beiden Endpunkte
+			\item \textbf{Aufgabe:} Finde alle Schnittpunkte
+		\end{itemize}
+	\end{block}
+	
+	\begin{block}{Vereinfachungen}
+		\begin{itemize}
+			\item keine zwei End-/Schnittpunkte haben die gleiche x-Koordinate
+			\item kein Endpunkt liegt auf einer anderen Strecke
+			\item max. 2 Strecken schneiden sich in einem Punkt
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+\begin{frame}{Naiver Ansatz}
+	\begin{exampleblock}{Erinnerung}
+		$Schnitt(p_1, p_2, p_3, p_4) = \newline
+		\hspace*{1cm} ccw(p_1, p_2, p_3) \cdot ccw(p_1, p_2, p_4) \le 0 \wedge \newline
+		\hspace*{1cm} ccw(p_3, p_4, p_1) \cdot ccw(p_3, p_4, p_2) \le 0$
+	\end{exampleblock}
+	\begin{figure}
+		\vspace{-2.5cm}\hspace*{6cm}\includegraphics[width=2cm]{intersect.png}\\
+	\end{figure}
+	\hspace{3cm}
+	\begin{block}{Algorithmus}
+		\begin{itemize}
+			\item Teste für je zwei Strecken, ob sie sich schneiden
+			\item Berechne Schnittpunkt (LGS)
+			\item Laufzeit: $O\left(n^2\right)$
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+\begin{frame}{Bentley–Ottmann Algorithmus}
+	\begin{block}{Idee}
+		\begin{itemize}
+			\item Lasse Sweepline $L$ von links nach rechts über die Ebene laufen.
+			\item Zu jedem Zeitpunkt schneidet S eine Teilmenge der Strecken. Die vertikale Anordnung verändert sich dabei nur bei einem Schnittpunkt.
+			\item Events sind
+				\begin{itemize}
+					\item noch nicht gescannte Endpunkte
+					\item Schnittpunkte von Strecken, die in der vertikalen Anordnung nebeneinander liegen
+				\end{itemize}
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+\begin{frame}{Bentley–Ottmann Algorithmus}
+	\begin{block}{Algorithmus - Initialisierung}
+		\begin{enumerate}
+			\item Erstelle Priority Queue $pq$ für zukünftige Events, priorisiert nach x-Koordinate. $pq$ enthält zu Beginn alle Endpunkte.
+			\item Erstelle Set $T$ für vertikale Anordnung der Schnittpunkte zwischen den Strecken und der Sweepline. Sortierung nach y-Koordinate. Zu Beginn leer.
+		\end{enumerate}
+	\end{block}
+\end{frame}
+
+\begin{frame}{Bentley–Ottmann Algorithmus}
+	\begin{block}{Algorithmus - Fortsetzung}
+		\begin{enumerate}
+			\setcounter{enumi}{2}
+			\item Solange $pq$ nicht leer ist, entferne erstes Element aus $pq$.
+			\begin{itemize}
+				\item \textbf{Linker Endpunkt einer Strecke $s$:} Füge $s$ in $T$ ein. Suche Strecken $r$ und $t$ direkt über und unter $s$ (falls sie existieren). Falls ihr Schnittpunk als Event in $pq$ liegt, entferne ihn. Falls $s$ die Strecken $r$ oder $t$ schneidet, füge die Schnittpunkte in $pq$ ein.
+				
+				\item \textbf{Rechter Endpunkt einer Strecke $s$:} Suche Strecken $r$ und $t$ direkt über und unter $s$. Falls sie sich noch schneiden, füge Schnittpunk zu $pq$ hinzu. Entferne $s$ aus $T$. 
+				
+				\item \textbf{Schnittpunk zweier Strecken $s$, $t$:} Tausche Positionen von $s$ und $t$ in $T$. Finde Strecken $o$ und $u$ darüber und darunter. Entferne Schnittpunkte mit diesen, füge neue ein.
+			\end{itemize}
+		\end{enumerate}
+	\end{block}
+\end{frame}
+
+\end{document}
