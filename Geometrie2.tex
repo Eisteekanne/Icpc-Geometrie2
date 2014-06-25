@@ -268,7 +268,7 @@
 			Naiver Ansatz für Combine immer noch in Laufzeit $\mathcal{O}(n^2)$ \\
 			\centerline{\huge{Optimierbar!}} \\
 			Sei $d' = \min(d_1, d_2)$. \\  
-			Für jeden Punkt in der unteren Punktmenge kann der nähere Punkt nur in einem Rechteck mit Breite $d' \text{und Höhe} 2*d'$ liegen
+			Für jeden Punkt in der unteren Punktmenge kann der nähere Punkt nur in einem Rechteck mit Breite $d' \text{und Höhe} \ 2 * d'$ liegen
 			\begin{block}{Beweisbar}
 				Es gibt maximal 6 solche Punkte im Rechteck. \\
 				Ohne Beweis
@@ -277,6 +277,91 @@
 			$\Rightarrow$ Maximal $\mathcal{O}(6n)$ Operationen für Combine \\
 			$\Rightarrow$ \textbf{Gesamtlaufzeit:} \\ $T(n) = 2 * T(n/2) + \mathcal{O}(n)$, und es gilt: $T(n) \in \mathcal{O}(n \log n)$
 		\end{frame}
-	
+
+		\begin{frame}{Beispiel}
+			\begin{minipage}{0.45\textwidth}
+				\includegraphics[width =\textwidth]{logos/PlotsBetter.png}
+			\end{minipage}
+			\begin{minipage}{0.45\textwidth}
+				Ausgangslage		
+			\end{minipage}
+		\end{frame}
+
+		\begin{frame}{Beispiel}
+			\begin{minipage}{0.45\textwidth}
+				\includegraphics[width =\textwidth]{logos/PlotsBetter01.png}
+			\end{minipage}
+			\begin{minipage}{0.45\textwidth}
+				Rekursionsstufe 1: Divide		
+			\end{minipage}
+		\end{frame}
+
+		\begin{frame}{Beispiel}
+			\begin{minipage}{0.45\textwidth}
+				\includegraphics[width =\textwidth]{logos/PlotsBetter02.png}
+			\end{minipage}
+			\begin{minipage}{0.45\textwidth}
+				Rekursionsstufe 2: Divide\\
+				$S_1'  \text{ : }  \infty$ \\	
+				$S_2'  \text{ : }  2.5 $ \\
+				$S_1''  \text{ : }  0.41$ \\
+				$S_2''  \text{ : }  \infty$		
+			\end{minipage}
+		\end{frame}
+
+		\begin{frame}{Beispiel}
+			\begin{minipage}{0.45\textwidth}
+				\includegraphics[width =\textwidth]{logos/PlotsBetter0gg.png}
+			\end{minipage}
+			\begin{minipage}{0.45\textwidth}
+				\textbf{Pinkes Rechteck}\\
+				Höhe: $ 2 * \min(\infty, 1.68)$\\ Breite: $ \min(\infty, 1.68) $\\
+				\ \\
+				$d_1' \text{ : }  \infty \\
+				d_2'  \text{ : }  1.68 \\
+				d_3'  \text{ : }  1.68$ \\ 
+				\ \\
+				$S_1 \text{ : } \min(\infty, 1.68, 1.68) = 1.68$
+			\end{minipage}
+		\end{frame}
+
+		\begin{frame}{Beispiel}
+			\begin{minipage}{0.45\textwidth}
+				\includegraphics[width =\textwidth]{logos/PlotsBetter0g.png}
+			\end{minipage}
+			\begin{minipage}{0.45\textwidth}
+				\textbf{Türkises Rechteck}\\
+				Höhe: $ 2 * \min(0.64, \infty)$\\ Breite: $2 * \min(0.64, \infty) $\\
+				\ \\
+				$d_1'‘ \text{ : }  0.64 \\
+				d_2'‘  \text{ : }  \infty \\
+				d_3'‘  \text{ : }  0.64$ \\ 
+				\ \\
+				$S_2 \text{ : } \min(0.64, \infty, 0.64) = 0.64$
+			\end{minipage}
+		\end{frame}
+
+		\begin{frame}{Beispiel}
+			\begin{minipage}{0.45\textwidth}
+				\includegraphics[width =\textwidth]{logos/PlotsBetter0ggg.png}
+			\end{minipage}
+			\begin{minipage}{0.45\textwidth}
+				\textbf{Rechtecke}\\
+				Höhe: $ 2 * \min(1.64, 0.64)$\\ Breite: $2 * \min(1.64, 0.64) $\\
+				\ \\
+				$d_1'‘ \text{ : }  1.64 \\
+				d_2'‘  \text{ : }  0.64 \\
+				d_3'‘  \text{ : }  0.707$ \\ 
+				\ \\
+				$\text{Gesamt  : } \min(1.64, 0.64, 0.707) = 0.64$
+
+				Closest Pair ist $p_5$ und $p_6$ \\ mit Abstand $0.64$
+			\end{minipage}
+		\end{frame}
+
+
+
+
+
 
 \end{document}
