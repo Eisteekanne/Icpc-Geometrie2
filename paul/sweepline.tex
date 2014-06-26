@@ -3,8 +3,6 @@
 \usepackage[utf8]{inputenc}
 \usepackage[ngerman]{babel}
 
-\usepackage{listings}
-
 \title{Sweepline Algorithmen - Linienschnitte}
 \author{Paul Jungeblut}
 \date{2. Juli 2014}
@@ -59,7 +57,7 @@
 		\hspace*{1cm} ccw(p_3, p_4, p_1) \cdot ccw(p_3, p_4, p_2) \le 0$
 	\end{exampleblock}
 	\begin{figure}
-		\vspace{-2.5cm}\hspace*{6cm}\includegraphics[width=2cm]{intersect.png}\\
+		\vspace{-2.5cm}\hspace*{6cm}\includegraphics[width=2cm]{intersect2.png}\\
 	\end{figure}
 	\hspace{3cm}
 	\begin{block}{Algorithmus}
@@ -90,24 +88,46 @@
 		\begin{enumerate}
 			\item Erstelle Priority Queue $pq$ für zukünftige Events, priorisiert nach x-Koordinate. $pq$ enthält zu Beginn alle Endpunkte.
 			\item Erstelle Set $T$ für vertikale Anordnung der Schnittpunkte zwischen den Strecken und der Sweepline. Sortierung nach y-Koordinate. Zu Beginn leer.
+			\item Solange $pq$ nicht leer ist, entferne erstes Element aus $pq$. 3 Fälle treten auf:
 		\end{enumerate}
 	\end{block}
 \end{frame}
 
 \begin{frame}{Bentley–Ottmann Algorithmus}
-	\begin{block}{Algorithmus - Fortsetzung}
-		\begin{enumerate}
-			\setcounter{enumi}{2}
-			\item Solange $pq$ nicht leer ist, entferne erstes Element aus $pq$.
-			\begin{itemize}
-				\item \textbf{Linker Endpunkt einer Strecke $s$:} Füge $s$ in $T$ ein. Suche Strecken $r$ und $t$ direkt über und unter $s$ (falls sie existieren). Falls ihr Schnittpunk als Event in $pq$ liegt, entferne ihn. Falls $s$ die Strecken $r$ oder $t$ schneidet, füge die Schnittpunkte in $pq$ ein.
-				
-				\item \textbf{Rechter Endpunkt einer Strecke $s$:} Suche Strecken $r$ und $t$ direkt über und unter $s$. Falls sie sich noch schneiden, füge Schnittpunk zu $pq$ hinzu. Entferne $s$ aus $T$. 
-				
-				\item \textbf{Schnittpunk zweier Strecken $s$, $t$:} Tausche Positionen von $s$ und $t$ in $T$. Finde Strecken $o$ und $u$ darüber und darunter. Entferne Schnittpunkte mit diesen, füge neue ein.
-			\end{itemize}
-		\end{enumerate}
+	\begin{block}{Linker Endpunkt einer Strecke $s$:}
+		\begin{itemize}
+			\item Füge $s$ in $T$ ein.
+			\item Suche Strecken $r$ und $t$ direkt über und unter $s$. Falls ihr Schnittpunkt als Event in $pq$ liegt, entferne ihn.
+			\item Falls $s$ die Strecken $r$ oder $s$ schneidet, füge die Schnittpunkte in $pq$ ein.
+		\end{itemize}
 	\end{block}
+	\begin{figure}
+		\includegraphics[scale=0.8]{insert.png}\\
+	\end{figure}
+\end{frame}
+
+\begin{frame}{Bentley–Ottmann Algorithmus}
+	\begin{block}{Rechter Endpunkt einer Strecke $s$:}
+		\begin{itemize}
+			\item Suche Strecken $r$ und $t$ direkt über und unter $s$. Falls sie sich noch schneiden, füge Schnittpunkt zu $pq$ hinzu.
+			\item Entferne $s$ aus $T$.
+		\end{itemize}
+	\end{block}
+	\begin{figure}
+		\includegraphics[scale=0.8]{remove.png}\\
+	\end{figure}
+\end{frame}
+
+\begin{frame}{Bentley–Ottmann Algorithmus}
+	\begin{block}{Schnittpunk zweier Strecken $s$, $t$:}
+		\begin{itemize}
+			\item Tausche Positionen von $s$ und $t$ in $T$.
+			\item Finde Strecken $o$ und $u$ darüber und darunter. Entferne Schnittpunkte mit diesen, füge neue ein.
+		\end{itemize}
+	\end{block}
+	\begin{figure}
+		\includegraphics[scale=0.8]{intersect.png}\\
+	\end{figure}
 \end{frame}
 
 \end{document}

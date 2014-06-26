@@ -17,8 +17,12 @@
 \headcommand {\beamer@framepages {6}{6}}
 \headcommand {\slideentry {1}{1}{5}{7/7}{Problem}{0}}
 \headcommand {\beamer@framepages {7}{7}}
-\headcommand {\beamer@partpages {1}{7}}
-\headcommand {\beamer@subsectionpages {3}{7}}
-\headcommand {\beamer@sectionpages {2}{7}}
-\headcommand {\beamer@documentpages {7}}
-\headcommand {\def \inserttotalframenumber {7}}
+\headcommand {\slideentry {1}{1}{6}{8/8}{Problem}{0}}
+\headcommand {\beamer@framepages {8}{8}}
+\headcommand {\slideentry {1}{1}{7}{9/9}{Problem}{0}}
+\headcommand {\beamer@framepages {9}{9}}
+\headcommand {\beamer@partpages {1}{9}}
+\headcommand {\beamer@subsectionpages {3}{9}}
+\headcommand {\beamer@sectionpages {2}{9}}
+\headcommand {\beamer@documentpages {9}}
+\headcommand {\def \inserttotalframenumber {9}}
